@@ -1,0 +1,8 @@
+# filepath: render.yaml
+services:
+  - type: web
+    name: track-shop
+    env: python
+    buildCommand: "uv sync"
+    startCommand: gunicorn app.app:app
+    plan: free
