@@ -3,6 +3,6 @@ services:
   - type: web
     name: track-shop
     env: python
-    buildCommand: "uv sync"
-    startCommand: gunicorn app.app:app
+    buildCommand: make install
+    startCommand: make prod
     plan: free
