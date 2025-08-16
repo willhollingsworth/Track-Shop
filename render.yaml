@@ -2,6 +2,7 @@
 services:
   - type: web
     name: track-shop
+    region: singapore
     env: python
     buildCommand: make install
     startCommand: make prod
