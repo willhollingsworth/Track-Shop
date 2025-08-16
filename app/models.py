@@ -1,48 +1,38 @@
-from datetime import datetime
+"""The models module for the Track Shop application."""
 
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column
+from datetime import UTC, datetime
 
-db = SQLAlchemy()
+from sqlmodel import Field, SQLModel
 
 
-class User(db.Model):
-    __tablename__ = "users"
-
-    user_id: Mapped[int] = mapped_column(primary_key=True)
-    email: Mapped[str] = mapped_column(unique=True, nullable=False)
-    password: Mapped[str] = mapped_column(nullable=False)
-    creation_date: Mapped[datetime] = mapped_column(nullable=False)
-    admin: Mapped[bool] = mapped_column(default=False)
+class User(SQLModel, table=True):
+    user_id: int | None = Field(default=None, primary_key=True)
+    email: str = Field(index=True, nullable=False, unique=True)
+    password: str
+    creation_date: datetime = Field(default_factory=lambda: datetime.now(UTC))
+    admin: bool = Field(default=False)
 
 
-class Track(db.Model):
-    __tablename__ = "tracks"
-
-    track_id: Mapped[int] = mapped_column(primary_key=True)
-    artist: Mapped[str] = mapped_column(unique=True, nullable=False)
-    title: Mapped[str] = mapped_column(unique=True, nullable=False)
-    price: Mapped[float] = mapped_column(nullable=False)
-    genre: Mapped[str] = mapped_column(nullable=False)
-    bpm: Mapped[int] = mapped_column(nullable=False)
-    music_key: Mapped[str] = mapped_column(nullable=False)
-    label: Mapped[str] = mapped_column(nullable=False)
+class Track(SQLModel, table=True):
+    track_id: int | None = Field(default=None, primary_key=True)
+    artist: str
+    title: str
+    price: float
+    genre: str
+    bpm: int
+    music_key: str
+    label: str
 
 
-class Cart(db.Model):
-    __tablename__ = "carts"
-
-    cart_id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.user_id"), nullable=False)
-    created_at: Mapped[datetime] = mapped_column(nullable=False)
-    updated_at: Mapped[datetime] = mapped_column(nullable=False)
+class Cart(SQLModel, table=True):
+    cart_id: int | None = Field(default=None, primary_key=True)
+    user_id: int = Field(foreign_key="user.user_id")
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
 
-class Order(db.Model):
-    __tablename__ = "orders"
-
-    order_id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.user_id"), nullable=False)
-    created_at: Mapped[datetime] = mapped_column(nullable=False)
-    updated_at: Mapped[datetime] = mapped_column(nullable=False)
+class Order(SQLModel, table=True):
+    order_id: int | None = Field(default=None, primary_key=True)
+    user_id: int = Field(foreign_key="user.user_id")
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))

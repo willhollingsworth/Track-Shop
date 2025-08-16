@@ -7,13 +7,13 @@ install-dev:
 	uv sync --frozen && uv cache prune --ci
 
 dev: db-dev-up db-dev-reset
-	uv run flask --app app.app:app run --debug
+	uv run fastapi dev
 
 db-dev-up:
 	docker compose up -d postgres-dev
 
 db-dev-reset:
-	uv run flask --app app.app:app reset-db 
+	uv run python -m app.reset_db  
 
 db-dev-down:
 	docker compose down
