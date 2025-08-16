@@ -2,28 +2,24 @@ import os
 
 from dotenv import load_dotenv
 from flask import Flask, render_template
-from flask_migrate import Migrate
+
+from app.models import db
 
 load_dotenv()
-
 app = Flask(__name__)
 
-# Configure the SQLAlchemy database URI
+# SQLAlchemy configuration
 app.config["SQLALCHEMY_DATABASE_URI"] = (
     f"postgresql://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}"
     f"@localhost:5432/{os.getenv('POSTGRES_DB')}"
 )
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-# Import and initialize db from models.py
-from app.models import db
-
 db.init_app(app)
-migrate = Migrate(app, db)
 
 
 @app.cli.command()
-def reset_db():
+def reset_db() -> None:
     """Reset the database."""
     db.drop_all()
     db.create_all()
@@ -31,7 +27,7 @@ def reset_db():
 
 
 @app.route("/")
-def home():
+def home() -> str:
     return render_template("index.html")
 
 
