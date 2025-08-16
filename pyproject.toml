@@ -5,3 +5,23 @@ description = "A full-stack web shop for selling songs"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = ["flask>=3.1.1", "gunicorn>=23.0.0"]
+
+[tool.ruff]
+lint.select = ["ALL"]
+ignore = [
+
+    "Q002",   # single vs double quotes in docstrings
+    "T201",   # print statements
+    "CPY001", # copywrite comments
+    "DOC201", # document function arguments
+    "TD003",  # Issue link for TODO comments
+
+]
+preview = true
+per-file-ignores = { "test_*.py" = [
+    "D103",
+    "S101",
+] } #ignore docs and asserts in tests
+
+[dependency-groups]
+dev = ["ruff>=0.12.0", "pytest>=8.4.1"]

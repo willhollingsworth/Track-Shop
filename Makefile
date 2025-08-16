@@ -1,7 +1,10 @@
-.PHONY: install start dev prod
+.PHONY: install dev_install start dev prod
 
 install:
-	uv sync --frozen && uv cache prune --ci
+	uv sync --frozen --no-dev && uv cache prune --ci
+
+install_dev:
+	uv sync --frozen --no-dev && uv cache prune --ci
 
 start:
 	uv run flask --app app.app:app run --host=0.0.0.0 --port=8000
