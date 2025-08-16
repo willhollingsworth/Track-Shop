@@ -1,4 +1,8 @@
+from datetime import datetime
+
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column
 
 db = SQLAlchemy()
 
@@ -6,39 +10,39 @@ db = SQLAlchemy()
 class User(db.Model):
     __tablename__ = "users"
 
-    user_id = db.Column(db.Integer, primary_key=True, index=True)
-    email = db.Column(db.String, unique=True, index=True, nullable=False)
-    password = db.Column(db.String, nullable=False)
-    creation_date = db.Column(db.DateTime, nullable=False)
-    admin = db.Column(db.Boolean, default=False)
+    user_id: Mapped[int] = mapped_column(primary_key=True)
+    email: Mapped[str] = mapped_column(unique=True, nullable=False)
+    password: Mapped[str] = mapped_column(nullable=False)
+    creation_date: Mapped[datetime] = mapped_column(nullable=False)
+    admin: Mapped[bool] = mapped_column(default=False)
 
 
 class Track(db.Model):
     __tablename__ = "tracks"
 
-    track_id = db.Column(db.Integer, primary_key=True, index=True)
-    artist = db.Column(db.String, unique=True, index=True, nullable=False)
-    title = db.Column(db.String, unique=True, index=True, nullable=False)
-    price = db.Column(db.Float, nullable=False)
-    genre = db.Column(db.String, nullable=False)
-    bpm = db.Column(db.Integer, nullable=False)
-    music_key = db.Column(db.String, nullable=False)
-    label = db.Column(db.String, nullable=False)
+    track_id: Mapped[int] = mapped_column(primary_key=True)
+    artist: Mapped[str] = mapped_column(unique=True, nullable=False)
+    title: Mapped[str] = mapped_column(unique=True, nullable=False)
+    price: Mapped[float] = mapped_column(nullable=False)
+    genre: Mapped[str] = mapped_column(nullable=False)
+    bpm: Mapped[int] = mapped_column(nullable=False)
+    music_key: Mapped[str] = mapped_column(nullable=False)
+    label: Mapped[str] = mapped_column(nullable=False)
 
 
 class Cart(db.Model):
     __tablename__ = "carts"
 
-    cart_id = db.Column(db.Integer, primary_key=True, index=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False)
-    updated_at = db.Column(db.DateTime, nullable=False)
+    cart_id: Mapped[int] = mapped_column(primary_key=True, index=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.user_id"), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(nullable=False)
 
 
 class Order(db.Model):
     __tablename__ = "orders"
 
-    order_id = db.Column(db.Integer, primary_key=True, index=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False)
-    updated_at = db.Column(db.DateTime, nullable=False)
+    order_id: Mapped[int] = mapped_column(primary_key=True, index=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.user_id"), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(nullable=False)
