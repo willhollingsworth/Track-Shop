@@ -11,6 +11,7 @@ dev: db-dev-up db-dev-reset
 
 db-dev-up:
 	docker compose up -d postgres-dev
+	timeout 3
 
 db-dev-reset:
 	uv run python -m app.reset_db  
