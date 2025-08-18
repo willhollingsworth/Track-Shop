@@ -22,3 +22,21 @@ templates = Jinja2Templates(directory="app/templates")
 def home(request: Request) -> _TemplateResponse:
     """Render the home page using the index.html Jinja2 template."""
     return templates.TemplateResponse("index.html", {"request": request})
+
+
+@app.get("/popular")
+def popular(request: Request) -> _TemplateResponse:
+    """Render the home page using the index.html Jinja2 template."""
+    return templates.TemplateResponse("popular.html", {"request": request})
+
+
+@app.get("/recommended")
+def recommended(request: Request) -> _TemplateResponse:
+    """Render the home page using the index.html Jinja2 template."""
+    return templates.TemplateResponse("recommended.html", {"request": request})
+
+
+@app.get("/new")
+def new(request: Request) -> _TemplateResponse:
+    """Render the home page using the index.html Jinja2 template."""
+    return templates.TemplateResponse("new.html", {"request": request})
