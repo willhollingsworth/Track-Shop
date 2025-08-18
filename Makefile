@@ -14,8 +14,8 @@ db-dev-up:
 	timeout 3
 
 db-dev-reset:
-	uv run python -m app.reset_db 
-	uv run python -m app.seed_db
+	uv run python -m app.db.reset_db 
+	uv run python -m app.db.seed_db
 
 db-dev-down:
 	docker compose down
