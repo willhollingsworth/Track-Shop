@@ -1,34 +1,17 @@
-from sqlmodel import Session, SQLModel
+"""Reset database."""
 
+from sqlmodel import SQLModel
+
+from app import models  # noqa: F401 # Required for reset to work correctly
 from app.db import engine
-from app.models import Track, User
 
 
-def reset_db():
+def reset_db() -> None:
+    """Reset the database by dropping and recreating all tables."""
     SQLModel.metadata.drop_all(engine)
     SQLModel.metadata.create_all(engine)
     print("Database reset complete.")
 
 
-def seed_db():
-    with Session(engine) as session:
-        # Example seed data
-        user = User(email="admin@example.com", password="admin", admin=True)
-        track = Track(
-            artist="Artist",
-            title="Song",
-            price=1.99,
-            genre="House",
-            bpm=128,
-            music_key="C#m",
-            label="Label",
-        )
-        session.add(user)
-        session.add(track)
-        session.commit()
-        print("Database seeded.")
-
-
 if __name__ == "__main__":
     reset_db()
-    seed_db()
