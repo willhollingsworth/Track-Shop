@@ -1,0 +1,13 @@
+User:
+  fields: ["email", "password", "admin"]
+  entries:
+  - ["admin@example.com", "password1", True]
+  - ["user2@gmail.com", "password2231", False]
+  - ["user55@gmail.com", "password1111", False]
+
+Track:
+  fields: ["artist", "title", "price", "genre", "bpm", "music_key", "label"]
+  entries:
+  - ["Artist", "Song", 1.99, "House", 128, "C#m", "Label 1"]
+  - ["Artist 2", "Song 2", 2.99, "Techno", 130, "D#m", "Label 2"]
+  - ["Artist 3", "Song 3", 3.99, "Trance", 132, "E", "Label 1"]
