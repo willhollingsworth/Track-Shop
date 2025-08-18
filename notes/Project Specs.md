@@ -36,7 +36,7 @@ Run the following DB queries
 - View all users
 - View orders (completed carts)
 
-#### Tech stack:
+## Tech stack:
 
 - Web Backend - **Fast api**
 - Database server - **PostgreSQL**
