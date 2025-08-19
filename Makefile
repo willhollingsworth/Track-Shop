@@ -15,6 +15,7 @@ db-dev-up:
 
 db-dev-reset:
 	uv run python -m app.db.reset_db 
+	timeout 2
 	uv run python -m app.db.seed_db
 
 db-dev-down:
