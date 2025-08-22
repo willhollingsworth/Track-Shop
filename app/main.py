@@ -3,10 +3,15 @@
 Sets up static files, templates, and the root endpoint.
 """
 
-from fastapi import FastAPI
+from typing import Annotated
+
+from fastapi import Depends, FastAPI
 from fastapi.requests import Request
 from fastapi.templating import Jinja2Templates
-from starlette.templating import _TemplateResponse
+from sqlmodel import Session, func, select
+
+from app.db.db import get_session
+from app.models import Track
 
 app = FastAPI(title="Track Shop")
 
@@ -15,24 +20,42 @@ templates = Jinja2Templates(directory="app/templates")
 
 
 @app.get("/")
-def home(request: Request) -> _TemplateResponse:
-    """Render the home page using the index.html Jinja2 template."""
-    return templates.TemplateResponse("index.html", {"request": request})
+def home(request: Request, session: Annotated[Session, Depends(get_session)]) -> object:
+    """Home page showing 5 random tracks."""
+    tracks = session.exec(
+        select(Track).order_by(func.random()).limit(5),
+    ).all()
+    return templates.TemplateResponse(
+        "index.html",
+        {"request": request, "tracks": tracks},
+    )
 
 
 @app.get("/popular")
-def popular(request: Request) -> _TemplateResponse:
-    """Render the home page using the index.html Jinja2 template."""
-    return templates.TemplateResponse("popular.html", {"request": request})
+def popular(
+    request: Request,
+    session: Annotated[Session, Depends(get_session)],
+) -> object:
+    """Popular songs. Currently shows random tracks."""
+    tracks = session.exec(
+        select(Track).order_by(func.random()).limit(6),
+    ).all()
+    return templates.TemplateResponse(
+        "popular.html",
+        {"request": request, "tracks": tracks},
+    )
 
 
 @app.get("/recommended")
-def recommended(request: Request) -> _TemplateResponse:
-    """Render the home page using the index.html Jinja2 template."""
-    return templates.TemplateResponse("recommended.html", {"request": request})
-
-
-@app.get("/new")
-def new(request: Request) -> _TemplateResponse:
-    """Render the home page using the index.html Jinja2 template."""
-    return templates.TemplateResponse("new.html", {"request": request})
+def recommended(
+    request: Request,
+    session: Annotated[Session, Depends(get_session)],
+) -> object:
+    """Recommended songs. Currently shows random tracks."""
+    tracks = session.exec(
+        select(Track).order_by(func.random()).limit(6),
+    ).all()
+    return templates.TemplateResponse(
+        "recommended.html",
+        {"request": request, "tracks": tracks},
+    )
