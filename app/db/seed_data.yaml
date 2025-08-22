@@ -1,13 +1,26 @@
 User:
   fields: ["email", "password", "admin"]
   entries:
-  - ["admin@example.com", "password1", True]
+  - ["admin@example.com", "securepassword1111", True]
+  - ["ceo@example.com", "password11", True]
   - ["user2@gmail.com", "password2231", False]
   - ["user55@gmail.com", "password1111", False]
+  - ["user33@gmail.com", "ffffaaass111", False]
+  - ["user43@gmail.com", "hashdsaasw", False]
+  - ["user111@gmail.com", "adshjsda622", False]
+  - ["user453@gmail.com", "lakas22311", False]
+  - ["user515153@gmail.com", "rrefaas1", False]
 
 Track:
   fields: ["artist", "title", "price", "genre", "bpm", "music_key", "label"]
   entries:
-  - ["Artist", "Song", 1.99, "House", 128, "C#m", "Label 1"]
-  - ["Artist 2", "Song 2", 2.99, "Techno", 130, "D#m", "Label 2"]
-  - ["Artist 3", "Song 3", 3.99, "Trance", 132, "E", "Label 1"]
+  - ["John", "At Midnight", 1.99, "House", 128, "C#m", "Darkside Records"]
+  - ["Rachel", "Air", 2.99, "Techno", 130, "D#m", "Sunlight Studios"]
+  - ["Jeff", "Stars", 3.99, "Trance", 132, "E", "Darkside Records"]
+  - ["Anna", "Dreams", 4.99, "House", 124, "A", "Sonny"]
+  - ["Mike", "Sunrise", 5.99, "Techno", 128, "B", "Sunlight Studios"]
+  - ["Sarah", "Ocean", 6.99, "Trance", 130, "C", "Darkside Records"]
+  - ["Tom", "Nightfall", 7.99, "House", 126, "D", "Sonny"]
+  - ["Emily", "Skyline", 8.99, "Techno", 128, "B", "Sunlight Studios"]
+  - ["Chris", "Waves", 9.99, "Trance", 130, "C", "Darkside Records"]
+  - ["Jessica", "Sunset", 10.99, "House", 126, "D", "Sonny"]
