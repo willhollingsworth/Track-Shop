@@ -4,10 +4,10 @@ erDiagram
     User
     Cart
     Track
-    User ||--o{ Order : Places
-    Order }|--|{ Track : Contains
-    User ||--o{ Cart : Has
-    Cart }|--|{ Track : Contains
+    User ||--|{ Order : Places
+    Order }|--o{ Track : Contains
+    User ||--|{ Cart : Has
+    Cart }|--o{ Track : Contains
 ```
 
 
