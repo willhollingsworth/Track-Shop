@@ -1,3 +1,5 @@
+"""Database connection setup with SQLModel."""
+
 import os
 
 from dotenv import load_dotenv

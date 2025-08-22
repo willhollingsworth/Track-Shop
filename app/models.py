@@ -1,4 +1,7 @@
-"""The models module for the Track Shop application."""
+"""Database models.
+
+Each Python class maps to a database table via SQLModel.
+"""
 
 from datetime import UTC, datetime
 
@@ -6,6 +9,8 @@ from sqlmodel import Field, SQLModel
 
 
 class User(SQLModel, table=True):
+    """Authenticated users."""
+
     user_id: int | None = Field(default=None, primary_key=True)
     email: str = Field(index=True, nullable=False, unique=True)
     password: str
@@ -14,6 +19,8 @@ class User(SQLModel, table=True):
 
 
 class Track(SQLModel, table=True):
+    """Music tracks available for purchase."""
+
     track_id: int | None = Field(default=None, primary_key=True)
     artist: str
     title: str
@@ -25,6 +32,8 @@ class Track(SQLModel, table=True):
 
 
 class Cart(SQLModel, table=True):
+    """Shopping cart for users."""
+
     cart_id: int | None = Field(default=None, primary_key=True)
     user_id: int = Field(foreign_key="user.user_id")
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
@@ -32,6 +41,8 @@ class Cart(SQLModel, table=True):
 
 
 class Order(SQLModel, table=True):
+    """Completed Orders placed by users."""
+
     order_id: int | None = Field(default=None, primary_key=True)
     user_id: int = Field(foreign_key="user.user_id")
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
