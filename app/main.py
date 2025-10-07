@@ -7,16 +7,18 @@ from typing import Annotated
 
 from fastapi import Depends, FastAPI
 from fastapi.requests import Request
-from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, func, select
 
 from app.db.db import get_session
 from app.models import Track
+from app.routers.users import login, register
+from app.templates_env import templates
 
 app = FastAPI(title="Track Shop")
 
-# Set up Jinja2 templates
-templates = Jinja2Templates(directory="app/templates")
+# Include user routes
+app.include_router(register.router)
+app.include_router(login.router)
 
 
 @app.get("/")
