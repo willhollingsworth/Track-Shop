@@ -1,3 +1,5 @@
+"""Login router."""
+
 from fastapi import APIRouter, Request
 
 from app.templates_env import templates
