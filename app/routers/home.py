@@ -5,6 +5,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends
 from fastapi.requests import Request
 from sqlmodel import Session
+from starlette.responses import Response
 
 from app.db.db import get_session
 from app.services.track import get_random_tracks
@@ -14,7 +15,10 @@ router = APIRouter()
 
 
 @router.get("/")
-def home(request: Request, session: Annotated[Session, Depends(get_session)]) -> object:
+def home(
+    request: Request,
+    session: Annotated[Session, Depends(get_session)],
+) -> Response:
     """Home page showing 5 random tracks."""
     tracks = get_random_tracks(session)
     return templates.TemplateResponse(

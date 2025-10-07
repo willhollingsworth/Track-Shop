@@ -4,6 +4,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, Request
 from sqlmodel import Session
+from starlette.responses import Response
 
 from app.db.db import get_session
 from app.services.track import get_random_tracks, get_tracks_by_genre
@@ -16,7 +17,7 @@ router = APIRouter()
 def popular(
     request: Request,
     session: Annotated[Session, Depends(get_session)],
-) -> object:
+) -> Response:
     """Popular songs. Currently shows random tracks."""
     tracks = get_random_tracks(session)
     return templates.TemplateResponse(
@@ -29,7 +30,7 @@ def popular(
 def recommended(
     request: Request,
     session: Annotated[Session, Depends(get_session)],
-) -> object:
+) -> Response:
     """Recommended songs. Currently shows random tracks."""
     tracks = get_random_tracks(session)
     return templates.TemplateResponse(
@@ -43,7 +44,7 @@ def genre(
     request: Request,
     session: Annotated[Session, Depends(get_session)],
     genre_name: str,
-) -> object:
+) -> Response:
     """Songs by genre."""
     tracks = get_tracks_by_genre(session, genre_name)
     return templates.TemplateResponse(
