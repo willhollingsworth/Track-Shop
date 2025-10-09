@@ -20,6 +20,8 @@ ignore = [
     "T201",   # print statements
     "CPY001", # copywrite comments
     "DOC201", # document function arguments
+    "DOC501", # missing docstring exceptions
+    "TRY002", # don't require custom exceptions
     "TD003",  # Issue link for TODO comments
 
 ]
