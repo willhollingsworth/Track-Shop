@@ -48,7 +48,7 @@ def register_user(  # noqa: PLR0913, PLR0917
             phone=phone,
         )
     except ValidationError as e:
-        # if msg is in errors, set error_msg to msg
+        # if the validation fails return a meaningful error message
         error_msg = formatting.format_validation_error(e)
         logger.info("user registering error: %s", error_msg)
 
@@ -68,7 +68,7 @@ def register_user(  # noqa: PLR0913, PLR0917
             {"request": request, "error": "Email already registered"},
         )
 
-    # Create new user TODO:hashed password
+    # Create new user TODO:hash password
     new_user = User(
         email=form_data.email,
         password=form_data.password,
