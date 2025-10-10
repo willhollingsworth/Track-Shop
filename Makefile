@@ -1,4 +1,7 @@
-.PHONY: install install-dev dev db-dev-up db-dev-reset db-dev-down prod
+.PHONY: install install-dev dev db-dev-up db-dev-reset db-dev-down prod check_env
+
+check-env:
+	uv run python scripts/check_env.py
 
 install:
 	uv sync --frozen --no-dev && uv cache prune --ci
@@ -6,7 +9,7 @@ install:
 install-dev:
 	uv sync --frozen && uv cache prune --ci
 
-dev: db-dev-up db-dev-reset
+dev: check-env db-dev-up db-dev-reset
 	uv run fastapi dev
 
 db-dev-up:

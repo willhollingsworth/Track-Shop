@@ -7,11 +7,18 @@ from sqlmodel import Session, create_engine
 
 load_dotenv()
 
+# check env vars exist
+try:
+    user = os.getenv("POSTGRES_USER")
+    password = os.getenv("POSTGRES_PASSWORD")
+    db_name = os.getenv("POSTGRES_DB")
+except KeyError:
+    msg = "missing value in .env file"
+    raise OSError(msg)
+
+
 # Build the database URL from environment variables
-DATABASE_URL = (
-    f"postgresql://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}"
-    f"@localhost:5432/{os.getenv('POSTGRES_DB')}"
-)
+DATABASE_URL = f"postgresql://{user}:{password}@localhost:5432/{db_name}"
 
 engine = create_engine(DATABASE_URL, echo=True)
 
