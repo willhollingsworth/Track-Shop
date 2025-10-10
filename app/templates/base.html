@@ -81,7 +81,11 @@
                         <button class="btn" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                         </button>
-                        <a href="/login" class="btn btn-dark ms-2">Log in</a>
+                        {% if request.session.get('user_id') %}
+                            <a href="/logout" class="btn btn-dark ms-2">Log out</a>
+                        {% else %}
+                            <a href="/login" class="btn btn-dark ms-2">Log in</a>
+                        {% endif %}
                     </form>
                 </div>
             </div>
