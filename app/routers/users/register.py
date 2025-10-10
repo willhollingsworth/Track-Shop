@@ -11,6 +11,7 @@ from starlette.responses import RedirectResponse, Response
 from app.db.db import get_session
 from app.models import User
 from app.schemas import UserRegister
+from app.services.user import hash_password
 from app.templates_env import templates
 from app.utils import formatting
 
@@ -68,10 +69,10 @@ def register_user(  # noqa: PLR0913, PLR0917
             {"request": request, "error": "Email already registered"},
         )
 
-    # Create new user TODO:hash password
+    # Create new user with hashed password
     new_user = User(
         email=form_data.email,
-        password=form_data.password,
+        password=hash_password(form_data.password),
     )
     session.add(new_user)
     session.commit()

@@ -7,6 +7,7 @@ from sqlmodel import Session
 
 import app.models
 from app.db.db import engine
+from app.services.user import hash_password
 
 SEED_DATA_PATH = "app/db/seed_data.yaml"
 
@@ -28,6 +29,9 @@ def seed_db() -> None:
                 continue
             for entry in entries:
                 entry_dict = dict(zip(fields, entry, strict=False))
+                # Hash passwords for User table
+                if table == "User" and "password" in entry_dict:
+                    entry_dict["password"] = hash_password(entry_dict["password"])
                 print(f"Seeding {table} with entry: {entry_dict}")
                 model_instance = model_cls(**entry_dict)
                 session.add(model_instance)
