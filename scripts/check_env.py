@@ -1,3 +1,5 @@
+"""Script to check for the existence of a .env file in the current directory."""
+
 import sys
 from pathlib import Path
 
