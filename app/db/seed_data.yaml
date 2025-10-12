@@ -1,15 +1,15 @@
 User:
-  fields: ["email", "password", "admin"]
+  fields: ["email", "password", "admin", "phone"]
   entries:
-  - ["admin@example.com", "securepassword1111", True]
-  - ["ceo@example.com", "password11", True]
-  - ["user2@gmail.com", "password2231", False]
-  - ["user55@gmail.com", "password1111", False]
-  - ["user33@gmail.com", "ffffaaass111", False]
-  - ["user43@gmail.com", "hashdsaasw", False]
-  - ["user111@gmail.com", "adshjsda622", False]
-  - ["user453@gmail.com", "lakas22311", False]
-  - ["user515153@gmail.com", "rrefaas1", False]
+  - ["admin@example.com", "securepassword1111", True, "12345123"]
+  - ["ceo@example.com", "password11", True , "98765987"]
+  - ["user2@gmail.com", "password2231", False, "56435643"]
+  - ["user55@gmail.com", "password1111", False, "67896789"]
+  - ["user33@gmail.com", "ffffaaass111", False, "34563456"]
+  - ["user43@gmail.com", "hashdsaasw", False, "23452345"]
+  - ["user111@gmail.com", "adshjsda622", False, "45674567"]
+  - ["user453@gmail.com", "lakas22311", False, "56785678"]
+  - ["user515153@gmail.com", "rrefaas1", False, "67896789"]
 
 Track:
   fields: ["artist", "title", "price", "genre", "bpm", "music_key", "label"]
