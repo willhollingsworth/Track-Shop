@@ -15,6 +15,8 @@ class User(SQLModel, table=True):
     email: str = Field(index=True, nullable=False, unique=True)
     password: str
     phone: str
+    first_name: str
+    last_name: str
     creation_date: datetime = Field(default_factory=lambda: datetime.now(UTC))
     admin: bool = Field(default=False)
 

@@ -35,6 +35,8 @@ def register_user(  # noqa: PLR0913, PLR0917
     password: Annotated[str, Form(...)],
     confirm_password: Annotated[str, Form(...)],
     phone: Annotated[str, Form(...)],
+    first_name: Annotated[str, Form(...)],
+    last_name: Annotated[str, Form(...)],
 ) -> Response:
     logger.info(
         "attempting to register: email=%s",
@@ -47,6 +49,8 @@ def register_user(  # noqa: PLR0913, PLR0917
             password=password,
             confirm_password=confirm_password,
             phone=phone,
+            first_name=first_name,
+            last_name=last_name,
         )
     except ValidationError as e:
         # if the validation fails return a meaningful error message
@@ -74,6 +78,8 @@ def register_user(  # noqa: PLR0913, PLR0917
         email=form_data.email,
         password=hash_password(form_data.password),
         phone=form_data.phone,
+        first_name=form_data.first_name,
+        last_name=form_data.last_name,
     )
     session.add(new_user)
     session.commit()

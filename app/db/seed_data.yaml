@@ -1,15 +1,15 @@
 User:
-  fields: ["email", "password", "admin", "phone"]
+  fields: ["email", "password", "admin", "phone", "first_name", "last_name"]
   entries:
-  - ["admin@example.com", "securepassword1111", True, "12345123"]
-  - ["ceo@example.com", "password11", True , "98765987"]
-  - ["user2@gmail.com", "password2231", False, "56435643"]
-  - ["user55@gmail.com", "password1111", False, "67896789"]
-  - ["user33@gmail.com", "ffffaaass111", False, "34563456"]
-  - ["user43@gmail.com", "hashdsaasw", False, "23452345"]
-  - ["user111@gmail.com", "adshjsda622", False, "45674567"]
-  - ["user453@gmail.com", "lakas22311", False, "56785678"]
-  - ["user515153@gmail.com", "rrefaas1", False, "67896789"]
+  - ["admin@example.com", "securepassword1111", True, "12345123", "John", "Doe"]
+  - ["ceo@example.com", "password11", True , "98765987", "Jane", "Smith"]
+  - ["user2@gmail.com", "password2231", False, "56435643", "Alice", "Johnson"]
+  - ["user55@gmail.com", "password1111", False, "67896789", "Bob", "Brown"]
+  - ["user33@gmail.com", "ffffaaass111", False, "34563456", "Carol", "Davis"]
+  - ["user43@gmail.com", "hashdsaasw", False, "23452345", "David", "Wilson"]
+  - ["user111@gmail.com", "adshjsda622", False, "45674567", "Emma", "Moore"]
+  - ["user453@gmail.com", "lakas22311", False, "56785678", "Frank", "Taylor"]
+  - ["user515153@gmail.com", "rrefaas1", False, "67896789", "Grace", "Anderson"]
 
 Track:
   fields: ["artist", "title", "price", "genre", "bpm", "music_key", "label"]

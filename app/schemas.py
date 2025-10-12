@@ -29,6 +29,8 @@ class UserRegister(BaseModel):
             "description": "Phone number must be at least 8 characters long",
         },
     )
+    first_name: str = Field(..., min_length=1, max_length=50)
+    last_name: str = Field(..., min_length=1, max_length=50)
 
     @field_validator("confirm_password")
     @classmethod
@@ -66,6 +68,8 @@ class UserRegister(BaseModel):
         password: str = Form(...),
         confirm_password: str = Form(...),
         phone: str = Form(...),
+        first_name: str = Form(...),
+        last_name: str = Form(...),
     ) -> "UserRegister":
         """Handle ingestion of form data."""
         return cls(
@@ -73,4 +77,6 @@ class UserRegister(BaseModel):
             password=password,
             confirm_password=confirm_password,
             phone=phone,
+            first_name=first_name,
+            last_name=last_name,
         )
