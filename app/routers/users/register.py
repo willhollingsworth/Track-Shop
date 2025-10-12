@@ -73,6 +73,7 @@ def register_user(  # noqa: PLR0913, PLR0917
     new_user = User(
         email=form_data.email,
         password=hash_password(form_data.password),
+        phone=form_data.phone,
     )
     session.add(new_user)
     session.commit()
