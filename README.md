@@ -72,7 +72,7 @@ make prod-run
 Verifies a user's data then creates a new user.
 
 1. **Register Page**: The user navigates to `/register` which routes to [`app/routers/users/register.py`](app/routers/users/register.py) as a `GET` request and serves [`app/templates/register.html`](app/templates/register.html)
-2. **Form Submission**: The user submits the form which routes to [`app/routers/users/register.py`](app/routers/users/register.py) as `POST` request. It checks against the schema defined in [`app/schemas.py`](app/schemas.py) and reports any errors. If there are none then an email duplicate check is run and if it passes a new user account is created and stored as per [`app/models.py`](app/models.py) 
+2. **Form Submission**: The user submits the form which routes to [`app/routers/users/register.py`](app/routers/users/register.py) as a `POST` request. It checks against the schema defined in [`app/schemas.py`](app/schemas.py) and reports any errors. If there are none, then an email duplicate check is run and if it passes a new user account is created and stored as per [`app/models.py`](app/models.py) 
 
 ### Login Flow
 Checks a user's credentials then logs them in.
