@@ -21,3 +21,8 @@ def get_tracks_by_genre(
     return session.exec(
         select(Track).where(func.lower(Track.genre) == genre_name.lower()).limit(limit),
     ).all()
+
+
+def get_track_by_id(session: Session, track_id: int) -> Track | None:
+    """Return a track by its ID."""
+    return session.exec(select(Track).where(Track.track_id == track_id)).first()

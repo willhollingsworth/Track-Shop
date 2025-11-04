@@ -4,7 +4,14 @@ Used for data validation
 """
 
 from fastapi import Form
-from pydantic import BaseModel, EmailStr, Field, ValidationInfo, field_validator
+from pydantic import (
+    BaseModel,
+    EmailStr,
+    Field,
+    ValidationInfo,
+    computed_field,
+    field_validator,
+)
 from pydantic_core import PydanticCustomError
 
 
@@ -80,3 +87,30 @@ class UserRegister(BaseModel):
             first_name=first_name,
             last_name=last_name,
         )
+
+
+class CartTrack(BaseModel):
+    """Represents a single track in the shopping cart."""
+
+    track_id: int
+    title: str
+    artist: str
+    price: float
+
+
+class Cart(BaseModel):
+    """Represents the user's shopping cart."""
+
+    items: list[CartTrack] = []
+
+    @computed_field
+    @property
+    def total(self) -> float:
+        """Calculate the total price of all items in the cart."""
+        return sum(item.price for item in self.items)
+
+    @computed_field
+    @property
+    def count(self) -> int:
+        """Get the number of items in the cart."""
+        return len(self.items)

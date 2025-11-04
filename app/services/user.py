@@ -2,6 +2,7 @@
 
 import bcrypt
 from sqlmodel import Session, select
+from starlette.requests import Request
 
 from app.models import User
 
@@ -17,3 +18,11 @@ def authenticate_user(session: Session, email: str, password: str) -> User | Non
     if user and bcrypt.checkpw(password.encode("utf-8"), user.password.encode("utf-8")):
         return user
     return None
+
+
+def get_current_user(request: Request, session: Session) -> User | None:
+    """Get the currently logged-in user from the session."""
+    user_id = request.session.get("user_id")
+    if not user_id:
+        return None
+    return session.get(User, user_id)

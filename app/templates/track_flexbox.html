@@ -24,7 +24,14 @@
                 <p class="card-text mb-2" style="font-size: 0.95rem">
                     <strong>${{ track.price }}</strong>
                 </p>
-                <a href="#" class="btn btn-primary btn-sm">Add to Cart</a>
+                <button
+                    hx-post="/cart/add/{{ track.track_id }}"
+                    hx-target="#cartModalBody"
+                    hx-swap="innerHTML"
+                    class="btn btn-primary btn-sm"
+                >
+                    Add to Cart
+                </button>
             </div>
         </div>
     </div>
