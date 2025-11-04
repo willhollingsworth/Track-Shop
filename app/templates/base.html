@@ -79,8 +79,16 @@
                     </li>
                 </ul>
                 <form class="d-flex ms-auto">
-                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#cartModal" hx-get="/cart/modal" hx-target="#cartModalBody" hx-swap="innerHTML">
-                    🛒 Cart (<span id="cart-count">0</span>)
+                    <button 
+                        type="button" 
+                        class="btn btn-outline-primary" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#cartModal"
+                        hx-get="/cart/modal-content"
+                        hx-target="#cartModalBody"
+                        hx-swap="innerHTML"
+                        >
+                        Cart (<span id="cart-count">0</span>)
                     </button>
                     {% if request.session.get('user_id') %}
                         <a href="/logout" class="btn btn-dark ms-2">Log out</a>
@@ -91,20 +99,8 @@
                 </div>
             </div>
         </nav>
-        <!-- Cart modal -->
-        <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="cartModalLabel">Shopping Cart</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="cartModalBody">
-                        <p>Loading cart...</p>
-                    </div>
-                </div>
-            </div>
-    </div>
+        <!-- Include the full cart modal -->
+        {% include 'cart_modal.html' %}
         <section class="py-2">
             <div class="container px-4 px-lg-5">
         {% block content %}{% endblock %}

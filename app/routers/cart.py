@@ -19,18 +19,18 @@ router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
 
 
-@router.get("/cart/modal")
-def get_cart_modal(
+@router.get("/cart/modal-content")
+def get_cart_modal_content(
     request: Request,
 ) -> Response:
-    """Show cart modal with validated Cart schema."""
+    """Return just the cart modal content."""
     cart = get_cart(request)
     return templates.TemplateResponse(
-        "cart_modal.html",
+        "cart_modal_content.html",
         {
             "request": request,
-            "cart": cart.items,  # Pass list for template
-            "total": cart.total,  # Use computed property
+            "cart": cart.items,
+            "total": cart.total,
             "count": cart.count,
         },
     )
@@ -47,7 +47,7 @@ def add_item(
     cart = get_cart(request)
 
     response = templates.TemplateResponse(
-        "cart_modal.html",
+        "cart_modal_content.html",  # Changed to _content
         {
             "request": request,
             "cart": cart.items,
@@ -66,7 +66,7 @@ def remove_item(track_id: int, request: Request) -> Response:
     cart = get_cart(request)
 
     response = templates.TemplateResponse(
-        "cart_modal.html",
+        "cart_modal_content.html",  # Changed to _content
         {
             "request": request,
             "cart": cart.items,
