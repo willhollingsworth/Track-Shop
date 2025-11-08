@@ -42,17 +42,20 @@ def add_item(
     request: Request,
     session: Annotated[Session, Depends(get_session)],
 ) -> Response:
-    """Add item to cart with validation."""
+    """Add item to cart with validation and return updated button."""
     add_to_cart(request, session, track_id)
     cart = get_cart(request)
 
     response = templates.TemplateResponse(
-        "cart_modal_content.html",  # Changed to _content
+        "cart_with_button_update.html",
         {
             "request": request,
             "cart": cart.items,
             "total": cart.total,
             "count": cart.count,
+            "track_id": track_id,
+            "is_in_cart": True,
+            "swap_oob": True,
         },
     )
     response.headers["HX-Trigger"] = "cartUpdated"
@@ -61,17 +64,20 @@ def add_item(
 
 @router.post("/cart/remove/{track_id}")
 def remove_item(track_id: int, request: Request) -> Response:
-    """Remove item from cart."""
+    """Remove item from cart and return updated button."""
     remove_from_cart(request, track_id)
     cart = get_cart(request)
 
     response = templates.TemplateResponse(
-        "cart_modal_content.html",  # Changed to _content
+        "cart_with_button_update.html",
         {
             "request": request,
             "cart": cart.items,
             "total": cart.total,
             "count": cart.count,
+            "track_id": track_id,
+            "is_in_cart": False,
+            "swap_oob": True,
         },
     )
     response.headers["HX-Trigger"] = "cartUpdated"

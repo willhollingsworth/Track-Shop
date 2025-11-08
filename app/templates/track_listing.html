@@ -30,16 +30,9 @@
                 <p class="card-text mb-2" style="font-size: 0.95rem">
                     <strong>${{ track.price }}</strong>
                 </p>
-                <div id="track-{{ track.track_id }}">
-                    <button
-                        hx-post="/cart/add/{{ track.track_id }}"
-                        hx-target="#cartModalBody"
-                        hx-swap="innerHTML"
-                        class="btn btn-primary btn-sm"
-                    >
-                        Add to Cart
-                    </button>
-                </div>
+                {% set track_ids = cart.items | map(attribute='track_id') | list
+                %} {% set is_in_cart = track.track_id in track_ids %} {% include
+                'partials/add_to_cart_button.html' %}
             </div>
         </div>
     </div>

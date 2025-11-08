@@ -12,17 +12,20 @@ def get_random_tracks(session: Session, limit: int = 5) -> Sequence[Track]:
     return session.exec(select(Track).order_by(func.random()).limit(limit)).all()
 
 
-def get_tracks_by_genre(
-    session: Session,
-    genre_name: str,
-    limit: int = 6,
-) -> Sequence[Track]:
-    """Return a list of tracks by genre."""
-    return session.exec(
-        select(Track).where(func.lower(Track.genre) == genre_name.lower()).limit(limit),
-    ).all()
-
-
 def get_track_by_id(session: Session, track_id: int) -> Track | None:
     """Return a track by its ID."""
     return session.exec(select(Track).where(Track.track_id == track_id)).first()
+
+
+def get_tracks(
+    session: Session,
+    genre: str | None = None,
+    limit: int = 20,
+) -> list[Track]:
+    """Return a list of tracks, optionally filtered by genre."""
+    if genre:
+        statement = select(Track).where(func.lower(Track.genre).like(func.lower(genre)))
+    else:
+        statement = select(Track).order_by(func.random())
+    statement = statement.limit(limit)
+    return list(session.exec(statement).all())

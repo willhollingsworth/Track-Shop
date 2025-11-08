@@ -59,3 +59,9 @@ def remove_from_cart(request: Request, track_id: int) -> None:
 def get_cart_count(request: Request) -> int:
     """Get the number of items in the cart."""
     return len(get_cart(request).items)
+
+
+def is_track_in_cart(request: Request, track_id: int) -> bool:
+    """Check if a track is already in the cart."""
+    cart = get_cart(request)
+    return any(item.track_id == track_id for item in cart.items)
