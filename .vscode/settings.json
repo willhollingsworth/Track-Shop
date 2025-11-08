@@ -5,5 +5,11 @@
         "**/*.rpymc": true,
         "**/cache/": true
     },
-    "cSpell.words": ["Reswap"]
+    "cSpell.words": ["Reswap"],
+    "[html]": {
+        "editor.defaultFormatter": "monosans.djlint",
+        "editor.formatOnSave": true
+    },
+    "djlint.useEditorIndentation": true,
+    "djlint.enableLinting": true
 }
