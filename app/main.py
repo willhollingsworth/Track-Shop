@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from starlette.middleware.sessions import SessionMiddleware
 
-from app.routers import cart, tracks
+from app.routers import cart, checkout, tracks
 from app.routers.users import login, register
 
 # load environment variables
@@ -40,3 +40,4 @@ app.include_router(login.router)
 
 # include cart routes
 app.include_router(cart.router)
+app.include_router(checkout.router)

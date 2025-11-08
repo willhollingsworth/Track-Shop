@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container mt-5">
+        <h2>Checkout</h2>
+        {% if error %}<div class="alert alert-danger" role="alert">{{ error }}</div>{% endif %}
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Order Summary</h4>
+                <ul class="list-group mb-3">
+                    {% for item in cart %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="my-0">{{ item.title }}</h6>
+                                <small class="text-muted">{{ item.artist }}</small>
+                            </div>
+                            <span class="text-muted">${{ "%.2f"|format(item.price) }}</span>
+                        </li>
+                    {% endfor %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Subtotal</span>
+                        <strong>${{ "%.2f"|format(subtotal) }}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Tax (10%)</span>
+                        <strong>${{ "%.2f"|format(tax) }}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total</span>
+                        <strong>${{ "%.2f"|format(total) }}</strong>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h4>Payment Information</h4>
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Cardholder Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               name="name"
+                               value="{{ form_data.name if form_data else '' }}"
+                               required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cc_number" class="form-label">Credit Card Number</label>
+                        <input type="text"
+                               class="form-control"
+                               id="cc_number"
+                               name="cc_number"
+                               placeholder="1234 5678 9012 3456"
+                               value="{{ form_data.cc_number if form_data else '' }}"
+                               required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="expiry" class="form-label">Expiry Date</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="expiry"
+                                   name="expiry"
+                                   placeholder="MM/YY"
+                                   value="{{ form_data.expiry if form_data else '' }}"
+                                   required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cv_number" class="form-label">CVV</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="cv_number"
+                                   name="cv_number"
+                                   placeholder="123"
+                                   value="{{ form_data.cv_number if form_data else '' }}"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Billing Address</label>
+                        <textarea class="form-control" id="address" name="address" rows="3" required>{{ form_data.address if form_data else '' }}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Complete Purchase</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
