@@ -21,13 +21,13 @@ logger.setLevel(logging.INFO)
 router = APIRouter()
 
 
-@router.get("/register")
+@router.get("/register", name="register")
 def register_page(request: Request) -> Response:
     """Display registration page."""
     return templates.TemplateResponse("register.html", {"request": request})
 
 
-@router.post("/register")
+@router.post("/register", name="register")
 def register_user(  # noqa: PLR0913, PLR0917
     request: Request,
     session: Annotated[Session, Depends(get_session)],

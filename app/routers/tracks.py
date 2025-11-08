@@ -36,10 +36,10 @@ GENRE_TITLES: dict[str, Callable[[str], str]] = {
 }
 
 
-@router.get("/")
-@router.get("/popular")
-@router.get("/recommended")
-@router.get("/genre/{genre_name}")
+@router.get("/", name="home")
+@router.get("/popular", name="popular")
+@router.get("/recommended", name="recommended")
+@router.get("/genre/{genre_name}", name="genre")
 def tracks_page(
     request: Request,
     session: Annotated[Session, Depends(get_session)],

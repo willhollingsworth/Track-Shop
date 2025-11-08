@@ -1,33 +1,24 @@
-<div
-    class="modal fade"
-    id="cartModal"
-    tabindex="-1"
-    aria-labelledby="cartModalLabel"
-    aria-hidden="true"
->
+<div class="modal fade"
+     id="cartModal"
+     tabindex="-1"
+     aria-labelledby="cartModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="cartModalLabel">Shopping Cart</h5>
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                ></button>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
             </div>
-            <div
-                class="modal-body"
-                id="cartModalBody"
-                hx-get="/cart/modal-content"
-                hx-trigger="cartModalOpened from:body"
-                hx-swap="innerHTML"
-            >
+            <div class="modal-body"
+                 id="cartModalBody"
+                 hx-get="/cart/modal-content"
+                 hx-trigger="cartModalOpened from:body"
+                 hx-swap="innerHTML">
                 <p class="text-center">
-                    <span
-                        class="spinner-border spinner-border-sm"
-                        role="status"
-                    ></span>
+                    <span class="spinner-border spinner-border-sm" role="status"></span>
                     Loading...
                 </p>
             </div>

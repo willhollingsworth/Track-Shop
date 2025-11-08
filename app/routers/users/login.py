@@ -17,7 +17,7 @@ def login_page(request: Request) -> Response:
     return templates.TemplateResponse("login.html", {"request": request})
 
 
-@router.post("/login")
+@router.post("/login", name="login")
 def login_user(
     request: Request,
     session: Session = Depends(get_session),
@@ -36,7 +36,7 @@ def login_user(
     return RedirectResponse(url="/", status_code=303)
 
 
-@router.get("/logout")
+@router.get("/logout", name="logout")
 def logout(request: Request) -> Response:
     request.session.clear()
     return RedirectResponse(url="/login", status_code=303)

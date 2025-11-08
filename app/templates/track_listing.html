@@ -1,41 +1,30 @@
-{% extends "base.html" %} {% block content %}
-<h1>{{ page_title }}</h1>
-{% if page_subtitle %}
-<p>{{ page_subtitle }}</p>
-{% endif %}
-
-<div class="row flex-row overflow-auto">
-    {% for track in tracks %}
-    <div class="col-3">
-        <div class="card mb-3" style="min-width: 180px; max-width: 200px">
-            <img
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='120'><rect width='100%' height='100%' fill='%23cccccc'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23666' font-size='16'>No Image</text></svg>"
-                class="card-img-top"
-                alt="Placeholder"
-                style="height: 120px; object-fit: cover"
-            />
-            <div class="card-body p-2">
-                <h5 class="card-title" style="font-size: 1rem">
-                    {{ track.title }}
-                </h5>
-                <h6
-                    class="card-subtitle mb-1 text-body-secondary"
-                    style="font-size: 0.9rem"
-                >
-                    {{ track.artist }}
-                </h6>
-                <p class="card-text mb-1" style="font-size: 0.85rem">
-                    {{ track.bpm }} BPM, {{ track.music_key }}
-                </p>
-                <p class="card-text mb-2" style="font-size: 0.95rem">
-                    <strong>${{ track.price }}</strong>
-                </p>
-                {% set track_ids = cart.items | map(attribute='track_id') | list
-                %} {% set is_in_cart = track.track_id in track_ids %} {% include
-                'partials/add_to_cart_button.html' %}
-            </div>
+{% extends "base.html" %}
+{% block content %}
+    <h1>{{ page_title }}</h1>
+    {% if page_subtitle %}<p>{{ page_subtitle }}</p>{% endif %}
+    <div class="row flex-row overflow-auto">
+        {% for track in tracks %}
+            <div class="col-3">
+                <div class="card mb-3" style="min-width: 180px; max-width: 200px">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='120'><rect width='100%' height='100%' fill='%23cccccc'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23666' font-size='16'>No Image</text></svg>"
+                         class="card-img-top"
+                         alt="No image available for this track"
+                         style="height: 120px;
+                                object-fit: cover" />
+                        <div class="card-body p-2">
+                            <h5 class="card-title" style="font-size: 1rem">{{ track.title }}</h5>
+                            <h6 class="card-subtitle mb-1 text-body-secondary"
+                                style="font-size: 0.9rem">{{ track.artist }}</h6>
+                            <p class="card-text mb-1" style="font-size: 0.85rem">{{ track.bpm }} BPM, {{ track.music_key }}</p>
+                            <p class="card-text mb-2" style="font-size: 0.95rem">
+                                <strong>${{ track.price }}</strong>
+                            </p>
+                            {% set track_ids = cart.items | map(attribute='track_id') | list %} {% set is_in_cart = track.track_id in track_ids %}
+                            {% include
+                            "partials/add_to_cart_button.html" %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-    </div>
-    {% endfor %}
-</div>
-{% endblock %}
+    {% endblock content %}
