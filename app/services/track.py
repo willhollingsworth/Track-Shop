@@ -29,3 +29,21 @@ def get_tracks(
         statement = select(Track).order_by(func.random())
     statement = statement.limit(limit)
     return list(session.exec(statement).all())
+
+
+def search_tracks(session: Session, query: str, limit: int = 5) -> list[Track]:
+    """Search for tracks by title or artist name."""
+    min_query_length = 2
+    if not query or len(query) < min_query_length:
+        return []
+
+    search_pattern = f"%{query}%"
+    statement = (
+        select(Track)
+        .where(
+            (func.lower(Track.title).like(func.lower(search_pattern)))
+            | (func.lower(Track.artist).like(func.lower(search_pattern))),
+        )
+        .limit(limit)
+    )
+    return list(session.exec(statement).all())

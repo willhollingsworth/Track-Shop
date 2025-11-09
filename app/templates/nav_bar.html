@@ -41,6 +41,28 @@
                     </li>
                 </li>
             </ul>
+            <!-- Search Bar -->
+            <div class="search-container mx-auto">
+                <input type="search"
+                       class="form-control"
+                       placeholder="Search tracks or artists..."
+                       name="search_string"
+                       id="search-input"
+                       autocomplete="off"
+                       hx-get="/search"
+                       hx-trigger="keyup changed delay:300ms"
+                       hx-target="#search-results"
+                       hx-indicator="#search-spinner"
+                       hx-include="#search-input"
+                       aria-label="Search">
+                <div id="search-spinner" class="search-spinner htmx-indicator">
+                    <span class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </span>
+                </div>
+                <div id="search-results"></div>
+            </div>
+            <!-- Cart -->
             <form class="d-flex ms-auto">
                 <button type="button"
                         class="btn btn-outline-primary"
@@ -51,6 +73,7 @@
                         hx-swap="innerHTML">
                     Cart (<span id="cart-count">0</span>)
                 </button>
+                <!-- Login/logout -->
                 {% if request.session.get('user_id') %}
                     <a href="{{ url_for('logout') }}" class="btn btn-dark ms-2">Log out</a>
                 {% else %}

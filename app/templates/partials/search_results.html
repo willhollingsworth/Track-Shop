@@ -1,0 +1,26 @@
+{% if tracks %}
+    <div class="list-group shadow-lg">
+        {% for track in tracks %}
+            <a href="{{ url_for('track_detail', track_id=track.track_id) }}"
+               class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                    <div>
+                        <h6 class="mb-1">{{ track.title }}</h6>
+                        <small class="text-muted">{{ track.artist }}</small>
+                    </div>
+                    <div class="text-end">
+                        <small class="text-muted">{{ track.genre }}</small>
+                        <br>
+                        <small class="fw-bold">${{ "%.2f"|format(track.price) }}</small>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% elif search_string %}
+    <div class="list-group shadow-lg no-results">
+        <div class="list-group-item text-muted">
+            <small>No tracks found for "{{ search_string }}"</small>
+        </div>
+    </div>
+{% endif %}

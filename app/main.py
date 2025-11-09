@@ -5,9 +5,10 @@ import os
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from starlette.middleware.sessions import SessionMiddleware
 
-from app.routers import cart, checkout, tracks
+from app.routers import cart, checkout, search, tracks
 from app.routers.users import login, register
 
 # load environment variables
@@ -30,6 +31,9 @@ if not secret_key:
 # Add session middleware
 app.add_middleware(SessionMiddleware, secret_key=secret_key)
 
+# Mount static files
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
 # Include track routes
 app.include_router(tracks.router)
 
@@ -41,3 +45,6 @@ app.include_router(login.router)
 # include cart routes
 app.include_router(cart.router)
 app.include_router(checkout.router)
+
+# include search routes
+app.include_router(search.router)
