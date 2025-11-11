@@ -6,10 +6,18 @@
         "**/cache/": true
     },
     "cSpell.words": ["Reswap"],
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "djlint.enableLinting": false,
+        "djlint.enableFormatting": false
+    },
     "[html]": {
         "editor.defaultFormatter": "monosans.djlint",
         "editor.formatOnSave": true
     },
     "djlint.useEditorIndentation": true,
-    "djlint.enableLinting": true
+    "djlint.enableLinting": true,
+    "djlint.languages": ["html", "jinja"],
+    "djlint.lintFilePatterns": ["**/*.html", "**/*.jinja", "**/*.jinja2"]
 }
