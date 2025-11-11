@@ -2,12 +2,9 @@
 erDiagram
     Order
     User
-    Cart
     Track
+    OrderTrack
     User ||--|{ Order : Places
-    Order }|--o{ Track : Contains
-    User ||--|{ Cart : Has
-    Cart }|--o{ Track : Contains
+    Order ||--|{ OrderTrack : Has
+    OrderTrack }|--|| Track : References
 ```
-
-
