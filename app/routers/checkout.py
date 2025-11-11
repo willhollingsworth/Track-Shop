@@ -10,6 +10,7 @@ from starlette.responses import RedirectResponse, Response
 from app.db.db import get_session
 from app.schemas import PaymentInfo
 from app.services.cart import CART_KEY, get_cart
+from app.services.order import create_order_from_cart
 from app.services.user import get_current_user
 from app.templates_env import templates
 from app.utils import formatting
@@ -69,7 +70,7 @@ def process_checkout(
 
     # Validate payment info
     try:
-        payment_info = PaymentInfo(
+        _payment_info = PaymentInfo(
             cc_number=cc_number,
             cv_number=cv_number,
             expiry=expiry,
@@ -102,6 +103,13 @@ def process_checkout(
             },
             status_code=status.HTTP_400_BAD_REQUEST,
         )
+
+    # Create order from cart
+    if user.user_id is None:
+        return RedirectResponse(url="/login", status_code=303)
+    order = create_order_from_cart(session, user.user_id, cart)
+
+    # Clear cart
     request.session[CART_KEY] = {"items": []}
 
-    return RedirectResponse(url="/", status_code=303)
+    return RedirectResponse(url=f"/order/{order.order_id}", status_code=303)

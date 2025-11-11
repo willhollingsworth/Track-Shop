@@ -8,7 +8,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.sessions import SessionMiddleware
 
-from app.routers import cart, checkout, search, tracks
+from app.routers import cart, checkout, order, search, tracks
 from app.routers.users import login, register
 
 # load environment variables
@@ -41,10 +41,14 @@ app.include_router(tracks.router)
 app.include_router(register.router)
 app.include_router(login.router)
 
-
 # include cart routes
 app.include_router(cart.router)
+
+# include checkout routes
 app.include_router(checkout.router)
+
+# include order routes
+app.include_router(order.router)
 
 # include search routes
 app.include_router(search.router)
