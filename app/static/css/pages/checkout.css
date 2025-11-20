@@ -1,0 +1,28 @@
+/* 
+Checkout
+*/
+
+/* Checkout Page Styles */
+.checkout-summary {
+    position: sticky;
+    top: 20px;
+}
+
+.checkout-total {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+/* Order Summary List */
+.order-summary-list .list-group-item {
+    border-left: none;
+    border-right: none;
+}
+
+.order-summary-list .list-group-item:first-child {
+    border-top: none;
+}
+
+.order-summary-list .list-group-item:last-child {
+    border-bottom: none;
+}

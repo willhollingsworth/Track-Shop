@@ -1,0 +1,41 @@
+/*
+Tracks
+*/
+
+/* Track Card Styles */
+.track-card {
+    min-width: 180px;
+    max-width: 200px;
+}
+
+.track-card-img {
+    height: 120px;
+    object-fit: cover;
+}
+
+.track-card-title {
+    font-size: 1rem;
+}
+
+.track-card-artist {
+    font-size: 0.9rem;
+}
+
+.track-card-info {
+    font-size: 0.85rem;
+}
+
+.track-card-price {
+    font-size: 0.95rem;
+}
+
+/* Track Detail Page */
+.track-detail-img {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.track-detail-info {
+    font-size: 1rem;
+}

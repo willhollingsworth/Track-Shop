@@ -1,0 +1,47 @@
+/*
+Components   
+*/
+
+/* HTMX Indicator Styles */
+.htmx-indicator {
+    display: none;
+}
+
+.htmx-request .htmx-indicator {
+    display: inline-block;
+}
+
+.htmx-request.htmx-indicator {
+    display: inline-block;
+}
+
+/* Card Components */
+.card {
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+/* Button Styles */
+.btn {
+    transition: all var(--transition-speed) ease;
+}
+
+/* Form Styles */
+.form-control:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Modal Styles */
+.modal-content {
+    border-radius: var(--border-radius);
+}
+
+/* Cart Modal */
+.cart-modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+}
