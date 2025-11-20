@@ -42,18 +42,18 @@
                     <div class="card-body">
                         <dl class="row mb-0">
                             <dt class="col-sm-6">Subtotal:</dt>
-                            <dd class="col-sm-6 text-end">
+                            <dd class="col-sm-6 text-success text-end">
                                 ${{ "%.2f"|format(order.subtotal) }}
                             </dd>
                             <dt class="col-sm-6">Tax (10%):</dt>
-                            <dd class="col-sm-6 text-end">
+                            <dd class="col-sm-6 text-success text-end">
                                 ${{ "%.2f"|format(order.tax) }}
                             </dd>
                             <dt class="col-sm-6 border-top pt-2">
                                 <strong>Total:</strong>
                             </dt>
                             <dd class="col-sm-6 text-end border-top pt-2">
-                                <strong>${{ "%.2f"|format(order.total) }}</strong>
+                                <span class="text-success fw-bold">${{ "%.2f"|format(order.total) }}</span>
                             </dd>
                         </dl>
                     </div>
@@ -88,7 +88,7 @@
                                             <td>
                                                 <span class="badge bg-primary">{{ order_track.track.genre }}</span>
                                             </td>
-                                            <td class="text-end">${{ "%.2f"|format(order_track.price_at_purchase) }}</td>
+                                            <td class="text-end text-success">${{ "%.2f"|format(order_track.price_at_purchase) }}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
