@@ -4,29 +4,44 @@ Tracks
 
 /* Track Card Styles */
 .track-card {
-    min-width: 180px;
-    max-width: 200px;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, filter var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        border: 2px solid transparent;
+}
+
+.track-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 0 10px rgba(0, 123, 255, 0.2);
+    filter: brightness(1.05);
+    border-color: rgba(0, 123, 255, 0.28);
 }
 
 .track-card-img {
-    height: 120px;
+    aspect-ratio: 1/1;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.track-card:hover .track-card-img {
+    transform: scale(1.05);
 }
 
 .track-card-title {
     font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
 }
 
 .track-card-artist {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
 }
 
-.track-card-info {
-    font-size: 0.85rem;
+.track-metadata .badge {
+    font-size: 0.75rem;
+    font-weight: 500;
 }
 
 .track-card-price {
-    font-size: 0.95rem;
+    font-size: 1.25rem;
 }
 
 /* Track Detail Page */
