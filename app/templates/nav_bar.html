@@ -11,7 +11,7 @@
             <i class="bi bi-list navbar-toggle-icon"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle"
                        id="navbarDropdown"
@@ -33,16 +33,16 @@
                                href="{{ url_for('genre', genre_name='trance') }}">Trance</a>
                         </li>
                     </ul>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('popular') }}">Popular</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('recommended') }}">Recommended</a>
-                    </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('popular') }}">Popular</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('recommended') }}">Recommended</a>
                 </li>
             </ul>
             <!-- Search Bar -->
-            <div class="search-container mx-auto">
+            <div class="search-container">
                 <input type="search"
                        class="form-control"
                        placeholder="Search tracks or artists..."
@@ -62,8 +62,8 @@
                 </div>
                 <div id="search-results"></div>
             </div>
-            <!-- Cart -->
-            <form class="d-flex ms-auto">
+            <!-- Cart & Auth Actions -->
+            <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0 ms-lg-3">
                 <button type="button"
                         class="btn btn-outline-primary"
                         data-bs-toggle="modal"
@@ -73,13 +73,12 @@
                         hx-swap="innerHTML">
                     Cart (<span id="cart-count">0</span>)
                 </button>
-                <!-- Login/logout -->
                 {% if request.session.get('user_id') %}
-                    <a href="{{ url_for('logout') }}" class="btn btn-dark ms-2">Log out</a>
+                    <a href="{{ url_for('logout') }}" class="btn btn-dark">Log out</a>
                 {% else %}
-                    <a href="{{ url_for('login') }}" class="btn btn-dark ms-2">Log in</a>
+                    <a href="{{ url_for('login') }}" class="btn btn-dark">Log in</a>
                 {% endif %}
-            </form>
+            </div>
         </div>
     </div>
 </nav>
